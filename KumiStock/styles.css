@@ -1,0 +1,253 @@
+body {
+  font-family: Poppins, sans-serif;
+  margin: 0;
+  background: #f4f6fb;
+  color: #333;
+}
+.container {
+  max-width: 900px; /* slightly wider for dashboard */
+  margin: 40px auto; /* auto centers horizontally */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers child elements */
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1e88e5, #42a5f5);
+  padding: 10px 20px;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar .nav-links li a:hover {
+  color: #ffeb3b;
+}
+
+.navbar .logout {
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: -100%;
+    flex-direction: column;
+    background: linear-gradient(90deg, #1e88e5, #42a5f5);
+    width: 200px;
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .nav-links.show {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+input,
+select,
+button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #1e88e5;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #1565c0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* KPI Cards */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.card.kpi {
+  min-width: 150px;
+  max-width: 220px;
+  flex: 1 1 150px;
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.card.kpi:hover {
+  transform: translateY(-5px);
+}
+
+/* Quick Action Buttons */
+.quick-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.btn {
+  background: linear-gradient(90deg, #1e88e5, #42a5f5);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: linear-gradient(90deg, #1565c0, #1976d2);
+  transform: translateY(-2px);
+}
+
+/* Search Input */
+#search-input {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
+/* Product Table */
+#products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#products-table th,
+#products-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+#products-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+#products-table tr:hover {
+  background: #e3f2fd;
+}
+.low-stock {
+  background: #ffebee !important;
+}
+#products-table td img {
+  width: 60px;
+  border-radius: 8px;
+}
+
+.form-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-card label {
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.form-card input {
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.form-card input:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 5px rgba(30, 136, 229, 0.3);
+  outline: none;
+}
+
+.form-card button {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #1e88e5, #42a5f5);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-card button:hover {
+  background: linear-gradient(90deg, #1565c0, #1976d2);
+  transform: translateY(-2px);
+}

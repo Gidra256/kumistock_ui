@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KumiStock - Add Product</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">KumiStock</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="add-product.html">Add Product</a></li>
+      <li><a href="record-sale.html">Record Sale</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="login.html" class="logout">Logout</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Add New Product</h1>
+
+    <div class="form-card">
+      <form id="add-product-form">
+        <label for="product-image">Product Image</label>
+        <input type="file" id="product-image" accept="image/*">
+        <img id="image-preview" src="" alt="Image Preview"
+          style="display:none; width:150px; margin-top:10px; border-radius:10px;">
+
+        <label for="product-name">Product Name</label>
+        <input type="text" id="product-name" placeholder="Enter product name" required>
+
+        <label for="supplier">Supplier / Source</label>
+        <input type="text" id="supplier" placeholder="Enter supplier name" required>
+
+        <label for="cost-price">Cost Price (UGX)</label>
+        <input type="number" id="cost-price" placeholder="Enter cost price" required>
+
+        <label for="selling-price">Selling Price (UGX)</label>
+        <input type="number" id="selling-price" placeholder="Enter selling price" required>
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" placeholder="Enter quantity" required>
+
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById('add-product-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      addProduct();
+      alert('Product added successfully!');
+      this.reset();
+    });
+  </script>
+</body>
+
+</html>

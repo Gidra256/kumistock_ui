@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KumiStock - Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">KumiStock</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="add-product.html">Add Product</a></li>
+      <li><a href="record-sale.html">Record Sale</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="login.html" class="logout">Logout</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="container">
+    <h1>Dashboard</h1>
+
+    <!-- KPI Cards -->
+    <div class="cards">
+      <div class="card kpi">
+        <h3>Total Sales</h3>
+        <p id="total-sales">0 items</p>
+      </div>
+      <div class="card kpi">
+        <h3>Total Profit</h3>
+        <p id="total-profit">0 UGX</p>
+      </div>
+      <div class="card kpi">
+        <h3>Low Stock</h3>
+        <p id="low-stock">0</p>
+      </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="quick-actions">
+      <a href="add-product.html" class="btn">Add Product</a>
+      <a href="record-sale.html" class="btn">Record Sale</a>
+    </div>
+
+    <!-- Search Bar -->
+    <input type="text" id="search-input" placeholder="Search products...">
+
+    <!-- Product Table -->
+    <div class="product-table">
+      <table id="products-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Supplier</th>
+            <th>Qty</th>
+            <th>Cost</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Search filter
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#products-table tbody tr');
+      rows.forEach(row => {
+        const name = row.children[1].innerText.toLowerCase();
+        row.style.display = name.includes(query) ? '' : 'none';
+      });
+    });
+    updateDashboard();
+  </script>
+</body>
+
+</html>

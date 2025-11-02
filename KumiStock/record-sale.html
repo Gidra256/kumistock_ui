@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KumiStock - Record Sale</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo">KumiStock</div>
+  <ul class="nav-links">
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="add-product.html">Add Product</a></li>
+    <li><a href="record-sale.html">Record Sale</a></li>
+    <li><a href="reports.html">Reports</a></li>
+    <li><a href="login.html" class="logout">Logout</a></li>
+  </ul>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Record Sale</h1>
+  <form id="record-sale-form">
+    <select id="product-select"></select>
+    <input type="number" id="quantity-sold" placeholder="Quantity Sold" required>
+    <button type="submit">Record Sale</button>
+  </form>
+</div>
+<script src="app.js"></script>
+<script>
+updateProductSelect();
+document.getElementById('record-sale-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    recordSale();
+    alert('Sale recorded!');
+    this.reset();
+});
+</script>
+</body>
+</html>
