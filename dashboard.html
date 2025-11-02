@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KumiStock - Owner Dashboard</title>
+    <link rel="stylesheet" href="KumiStock/styles.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="logo">KumiStock</div>
+        <ul class="nav-links">
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- ===== DASHBOARD CONTAINER ===== -->
+    <div class="container">
+        <h1>Owner Dashboard</h1>
+
+        <!-- ===== PRODUCT FORM ===== -->
+        <div class="form-card">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" placeholder="Enter product name" required>
+
+            <label for="supplier">Supplier</label>
+            <input type="text" id="supplier" placeholder="Enter supplier name" required>
+
+            <label for="price">Price (UGX)</label>
+            <input type="number" id="price" placeholder="Enter price" required>
+
+            <label for="qty">Available Quantity</label>
+            <input type="number" id="qty" placeholder="Enter quantity" required>
+
+            <label for="image">Product Image URL</label>
+            <input type="text" id="image" placeholder="Enter image URL or leave blank">
+
+            <button id="add-product">Add Product</button>
+        </div>
+
+        <!-- ===== CURRENT PRODUCTS ===== -->
+        <h2>Current Products</h2>
+        <div class="product-cards" id="dashboard-products"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        const nameInput = document.getElementById('name');
+        const supplierInput = document.getElementById('supplier');
+        const priceInput = document.getElementById('price');
+        const qtyInput = document.getElementById('qty');
+        const imageInput = document.getElementById('image');
+        const addBtn = document.getElementById('add-product');
+        const dashboardProducts = document.getElementById('dashboard-products');
+
+        // Load products from localStorage
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        function displayDashboardProducts() {
+            dashboardProducts.innerHTML = '';
+            if (products.length === 0) {
+                dashboardProducts.innerHTML = "<p style='text-align:center; color:#999;'>No products added yet.</p>";
+                return;
+            }
+
+            products.forEach((p, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${p.image || 'https://via.placeholder.com/150'}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p><strong>Supplier:</strong> ${p.supplier}</p>
+                    <p><strong>Price:</strong> UGX ${p.price}</p>
+                    <p><strong>Qty:</strong> ${p.qty}</p>
+                    <button class="btn-delete" data-index="${index}">Delete</button>
+                `;
+                dashboardProducts.appendChild(card);
+            });
+
+            // Add delete functionality
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = btn.getAttribute('data-index');
+                    products.splice(index, 1);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    displayDashboardProducts();
+                });
+            });
+        }
+
+        displayDashboardProducts();
+
+        // Add product
+        addBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const supplier = supplierInput.value.trim();
+            const price = parseInt(priceInput.value);
+            const qty = parseInt(qtyInput.value);
+            const image = imageInput.value.trim();
+
+            if (!name || !supplier || isNaN(price) || isNaN(qty)) {
+                alert("Please fill all required fields correctly.");
+                return;
+            }
+
+            const product = { name, supplier, price, qty, image };
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
+
+            // Clear form
+            nameInput.value = '';
+            supplierInput.value = '';
+            priceInput.value = '';
+            qtyInput.value = '';
+            imageInput.value = '';
+
+            displayDashboardProducts();
+            alert("✅ Product added successfully!");
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+    </script>
+</body>
+
+</html>
